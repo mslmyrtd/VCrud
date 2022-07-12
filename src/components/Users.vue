@@ -1,11 +1,15 @@
 <script setup lang="ts">
+import router from "@/router";
 import axios from "axios";
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted } from "vue";
 import { useToast } from "vue-toastification";
- const toast = useToast();
+const toast = useToast();
 const itemList = ref([]);
 onMounted(() => {
-  axios("https://dummyjson.com/users?limit=10").then((response) => {
+  axios(
+    "https://dummyjson.com/users?limit=30&skip=10&select=firstName,lastName,email,image"
+  ).then((response) => {
+    console.log(response.data.users);
     itemList.value = response.data.users || [];
   });
 });
@@ -13,14 +17,19 @@ const onDelete = (item: number) =>
   axios.delete(`https://dummyjson.com/users/${item.id}`).then((response) => {
     itemList.value = itemList.value.filter((i) => i.id !== item.id);
     toast.success("Deleted", {
-        timeout: 2000
-      });
+      timeout: 2000,
+    });
   });
+const goEdit = (id: number) => {
+  router.push(
+    `https://dummyjson.com/users?limit=10&skip=10&select=firstName,lastName,email,image/${id}`
+  );
+};
 </script>
 
 <template>
   <div
-    class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+    class="max-w-sm bg-slate-50 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
     v-for="item in itemList"
     :key="item.id"
   >
@@ -45,6 +54,7 @@ const onDelete = (item: number) =>
             Delete
           </button>
           <button
+            @click="goEdit(item.id)"
             class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
           >
             Edit

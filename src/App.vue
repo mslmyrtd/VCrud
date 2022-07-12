@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import Dashboard from './components/Dashboard.vue'
-
+import { RouterView } from "vue-router";
+import Navbar from "./components/Navbar.vue";
 </script>
 
 <template>
-<Dashboard/>
+  <Navbar />
+  <router-view></router-view>
 </template>
 
-<style>
-
-</style>
+<style></style>
