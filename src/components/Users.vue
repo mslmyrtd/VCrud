@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import router from "@/router";
-import { onMounted } from "vue";
+import { onMounted} from "vue";
 import { useUserStore } from "@/stores/userStore";
 
 const store = useUserStore();
 onMounted(() => {
   store.getUsers();
+   console.log(store.itemList)
 });
 
-const goEdit = (id: number) => {
-  router.push(
-    `https://dummyjson.com/users?limit=10&skip=10&select=firstName,lastName,email,image/${id}`
-  );
-};
+
+
+
+// const goEdit = (id: number) => {
+//   router.push(
+//     `https://dummyjson.com/users?limit=10&skip=10&select=firstName,lastName,email,image/${id}`
+//   );
+// };
 </script>
 
 <template>
@@ -21,6 +25,7 @@ const goEdit = (id: number) => {
     v-for="item in store.itemList"
     :key="item.id"
   >
+ 
     <div>
       <div class="flex flex-col items-center pb-10">
         <img

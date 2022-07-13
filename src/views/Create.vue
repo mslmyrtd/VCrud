@@ -1,31 +1,10 @@
 <script setup lang="ts">
 import router from "@/router";
 import axios from "axios";
-import { ref } from "vue";
+import { ref ,watch} from "vue";
+import { useUserStore } from "@/stores/userStore";
+const store=useUserStore()
 
-const firstName = ref("");
-const lastName = ref("");
-const email = ref("");
-const image = ref("");
-
-const addPerson = () => {
-  fetch("https://dummyjson.com/users/add", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      firstName: firstName.value,
-      lastName: lastName.value,
-      email: email.value,
-      image: image.value,
-      /* other user data */
-    }),
-  })
-    .then((res) => res.json())
-    .then(console.log);
-  // axios.post("https://dummyjson.com/users/add", data);
-  // console.log(data);
-  router.push("/");
-};
 </script>
 
 <template>
@@ -33,7 +12,7 @@ const addPerson = () => {
     <div class="w-full max-w-xs">
       <form
         class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
-        @submit.prevent="addPerson()"
+        @submit.prevent="store.getAdd()"
       >
         <div class="mb-4">
           <label
@@ -43,7 +22,7 @@ const addPerson = () => {
             First Name
           </label>
           <input
-            v-model="firstName"
+            v-model="store.firstName"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="username"
             type="text"
@@ -58,7 +37,7 @@ const addPerson = () => {
             Last Name
           </label>
           <input
-            v-model="lastName"
+            v-model="store.lastName"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="username"
             type="text"
@@ -70,7 +49,7 @@ const addPerson = () => {
             Email
           </label>
           <input
-            v-model="email"
+            v-model="store.email"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="email"
             type="email"
@@ -82,7 +61,7 @@ const addPerson = () => {
             Imaga Url
           </label>
           <input
-            v-model="image"
+            v-model="store.image"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="url"
             type="text"
