@@ -3,17 +3,28 @@ import router from "@/router";
 import axios from "axios";
 import { ref } from "vue";
 
-const data = ref({
-  firstName: "",
-  lastName: "",
-  image: "",
-  email: "",
-});
+const firstName = ref("");
+const lastName = ref("");
+const email = ref("");
+const image = ref("");
 
 const addPerson = () => {
-  axios.post("https://dummyjson.com/users/add", data);
-  console.log(data);
-  router.push("/")
+  fetch("https://dummyjson.com/users/add", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      firstName: firstName.value,
+      lastName: lastName.value,
+      email: email.value,
+      image: image.value,
+      /* other user data */
+    }),
+  })
+    .then((res) => res.json())
+    .then(console.log);
+  // axios.post("https://dummyjson.com/users/add", data);
+  // console.log(data);
+  router.push("/");
 };
 </script>
 
@@ -22,7 +33,7 @@ const addPerson = () => {
     <div class="w-full max-w-xs">
       <form
         class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
-         @submit.prevent="addPerson"
+        @submit.prevent="addPerson()"
       >
         <div class="mb-4">
           <label
@@ -32,7 +43,7 @@ const addPerson = () => {
             First Name
           </label>
           <input
-            v-model="data.firstName"
+            v-model="firstName"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="username"
             type="text"
@@ -47,7 +58,7 @@ const addPerson = () => {
             Last Name
           </label>
           <input
-            v-model="data.lastName"
+            v-model="lastName"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="username"
             type="text"
@@ -59,7 +70,7 @@ const addPerson = () => {
             Email
           </label>
           <input
-            v-model="data.email"
+            v-model="email"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="email"
             type="email"
@@ -71,7 +82,7 @@ const addPerson = () => {
             Imaga Url
           </label>
           <input
-            v-model="data.image"
+            v-model="image"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="url"
             type="text"
@@ -88,8 +99,7 @@ const addPerson = () => {
             </button>
           </router-link>
           <button
-          type="submit"
-           
+            type="submit"
             class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
           >
             Save

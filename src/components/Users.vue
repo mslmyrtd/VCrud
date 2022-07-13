@@ -1,25 +1,13 @@
 <script setup lang="ts">
 import router from "@/router";
-import axios from "axios";
-import { ref, onMounted } from "vue";
-import { useToast } from "vue-toastification";
-const toast = useToast();
-const itemList = ref([]);
+import { onMounted } from "vue";
+import { useUserStore } from "@/stores/userStore";
+
+const store = useUserStore();
 onMounted(() => {
-  axios(
-    "https://dummyjson.com/users?limit=30&skip=10&select=firstName,lastName,email,image"
-  ).then((response) => {
-    console.log(response.data.users);
-    itemList.value = response.data.users || [];
-  });
+  store.getUsers();
 });
-const onDelete = (item: number) =>
-  axios.delete(`https://dummyjson.com/users/${item.id}`).then((response) => {
-    itemList.value = itemList.value.filter((i) => i.id !== item.id);
-    toast.success("Deleted", {
-      timeout: 2000,
-    });
-  });
+
 const goEdit = (id: number) => {
   router.push(
     `https://dummyjson.com/users?limit=10&skip=10&select=firstName,lastName,email,image/${id}`
@@ -30,7 +18,7 @@ const goEdit = (id: number) => {
 <template>
   <div
     class="max-w-sm bg-slate-50 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
-    v-for="item in itemList"
+    v-for="item in store.itemList"
     :key="item.id"
   >
     <div>
@@ -49,7 +37,7 @@ const goEdit = (id: number) => {
         <div class="flex mt-4 space-x-3 lg:mt-6">
           <button
             class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none"
-            @click="onDelete(item)"
+            @click="store.getDelete(item.id)"
           >
             Delete
           </button>
