@@ -27,9 +27,9 @@ export const useUserStore = defineStore({
       if (this.itemList.length > 0) this.itemList;
       else {
         axios(
-          "https://dummyjson.com/users?limit=200&skip=0&select=firstName,lastName,email,image"
+          "https://dummyjson.com/users?limit=20&skip=0&select=firstName,lastName,email,image"
         ).then((response) => {
-          this.itemList = response.data.users.slice(0, 25) || [];
+          this.itemList = response.data.users || [];
         });
       }
     },
@@ -66,9 +66,16 @@ export const useUserStore = defineStore({
         })
         .then((response) => {
           let newUser = response.data;
-          this.itemList.push(newUser);
+          this.itemList=[newUser,...this.itemList]
+          this.reset()
           return router.push("/");
         });
     },
+    reset(){
+      this.firstName="",
+      this.lastName="",
+      this.email="",
+      this.image=""
+    }
   },
 });
