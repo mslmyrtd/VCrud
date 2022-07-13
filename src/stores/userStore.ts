@@ -67,6 +67,9 @@ export const useUserStore = defineStore({
         .then((response) => {
           let newUser = response.data;
           this.itemList=[newUser,...this.itemList]
+          toast.success("Successfully added", {
+            timeout: 2000,
+          });
           this.reset()
           return router.push("/");
         });
