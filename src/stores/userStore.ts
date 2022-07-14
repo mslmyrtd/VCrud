@@ -11,6 +11,7 @@ type User = {
   lastName: string;
   email: string;
   image: string;
+  id:string;
 };
 export const useUserStore = defineStore({
   id: "user",
@@ -20,6 +21,7 @@ export const useUserStore = defineStore({
     lastName: "",
     email: "",
     image: "",
+    id:""
   }),
   getters: {},
   actions: {
@@ -37,7 +39,7 @@ export const useUserStore = defineStore({
       axios
         .delete(`https://dummyjson.com/users/${payload}`)
         .then((response) => {
-          this.itemList = this.itemList.filter((i) => i.id !== payload);
+          this.itemList = this.itemList.filter((i:any) => i.id !== payload);
           toast.success("Deleted", {
             timeout: 2000,
           });
@@ -46,10 +48,10 @@ export const useUserStore = defineStore({
           console.log(err, "SERVER RESPONDED WITH ERROR");
           // Newly added item is not added to mock server,remove it manually!
           const itemForDelete = this.itemList.find(
-            (item) => item.id == payload
+            (item:any) => item.id == payload
           );
           if (itemForDelete) {
-            this.itemList = this.itemList.filter((item) => item.id !== payload);
+            this.itemList = this.itemList.filter((item:any) => item.id !== payload);
             toast.success("Deleted", {
               timeout: 2000,
             });
@@ -66,19 +68,44 @@ export const useUserStore = defineStore({
         })
         .then((response) => {
           let newUser = response.data;
-          this.itemList=[newUser,...this.itemList]
+          this.itemList = [newUser, ...this.itemList];
           toast.success("Successfully added", {
             timeout: 2000,
           });
-          this.reset()
+          this.reset();
           return router.push("/");
         });
     },
-    reset(){
-      this.firstName="",
-      this.lastName="",
-      this.email="",
-      this.image=""
-    }
+    getOneUser(payload: number) {
+      axios(`https://dummyjson.com/users/${payload}`).then((response) => {
+        this.itemList = response.data;
+      });
+    },
+    updateSubmit(payload: number) {
+      axios
+        .put(`https://dummyjson.com/users/${payload}`, {
+          firstName: this.firstName,
+          lastName: this.lastName,
+          email: this.email,
+          image: this.image,
+        })
+        .then((response) => {
+          let newUser = response.data;
+          console.log(newUser);
+          this.itemList = [newUser, ...this.itemList];
+          toast.success("Successfully updated", {
+            timeout: 2000,
+          });
+
+          this.reset();
+          return router.push("/");
+        });
+    },
+    reset() {
+      (this.firstName = ""),
+        (this.lastName = ""),
+        (this.email = ""),
+        (this.image = "");
+    },
   },
 });

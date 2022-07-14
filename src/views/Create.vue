@@ -1,19 +1,33 @@
 <script setup lang="ts">
 import router from "@/router";
 import axios from "axios";
-import { ref ,watch} from "vue";
+import { ref, watch } from "vue";
 import { useUserStore } from "@/stores/userStore";
-const store=useUserStore()
-
+const store = useUserStore();
 </script>
 
 <template>
-  <div class="flex justify-center items-center mt-20">
-    <div class="w-full max-w-xs">
+  <div class="flex justify-center items-center mt-12">
+   
+    <div class="w-full max-w-xs ">
+    
       <form
         class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
         @submit.prevent="store.getAdd()"
       >
+         <img :src="store.image" alt="" class="mb-3 w-24 h-24 mt-5 rounded-full shadow-lg mx-auto border-none" />
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="url">
+            Imaga Url
+          </label>
+          <input
+            v-model="store.image"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="url"
+            type="text"
+            placeholder="url"
+          />
+        </div>
         <div class="mb-4">
           <label
             class="block text-gray-700 text-sm font-bold mb-2"
@@ -56,21 +70,9 @@ const store=useUserStore()
             placeholder="email"
           />
         </div>
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="url">
-            Imaga Url
-          </label>
-          <input
-            v-model="store.image"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="url"
-            type="text"
-            placeholder="url"
-          />
-        </div>
 
         <div class="flex items-center justify-between">
-          <router-link to="/">
+          <router-link to="/" @click="store.reset()">
             <button
               class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none"
             >
@@ -86,5 +88,6 @@ const store=useUserStore()
         </div>
       </form>
     </div>
+    
   </div>
 </template>

@@ -1,22 +1,12 @@
 <script setup lang="ts">
-import router from "@/router";
-import { onMounted} from "vue";
+import { onMounted } from "vue";
 import { useUserStore } from "@/stores/userStore";
 
 const store = useUserStore();
 onMounted(() => {
   store.getUsers();
-   console.log(store.itemList)
+  console.log(store.itemList);
 });
-
-
-
-
-// const goEdit = (id: number) => {
-//   router.push(
-//     `https://dummyjson.com/users?limit=10&skip=10&select=firstName,lastName,email,image/${id}`
-//   );
-// };
 </script>
 
 <template>
@@ -25,7 +15,6 @@ onMounted(() => {
     v-for="item in store.itemList"
     :key="item.id"
   >
- 
     <div>
       <div class="flex flex-col items-center pb-10">
         <img
@@ -46,12 +35,13 @@ onMounted(() => {
           >
             Delete
           </button>
-          <button
-            @click="goEdit(item.id)"
-            class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
+          <router-link :to="`/editpage/${item.id}`">
+            <button
+              class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
+            >
+              Edit
+            </button></router-link
           >
-            Edit
-          </button>
         </div>
       </div>
     </div>

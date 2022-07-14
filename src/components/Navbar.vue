@@ -26,7 +26,8 @@
               >
               <router-link to="/editpage/1">
                 <button
-                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium "
+                  disabled
                 >
                   Edit
                 </button></router-link
@@ -58,16 +59,24 @@
     <DisclosurePanel class="sm:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-       <router-link to="/"  class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" > <DisclosureButton
-          >Dashboard</DisclosureButton
-        ></router-link>
-       <router-link to="/editpage/1"  class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" > <DisclosureButton
-          >Edit</DisclosureButton
-        ></router-link>
-       <router-link to="/create"  class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" > <DisclosureButton
-          >Create</DisclosureButton
-        ></router-link>
-       
+        <router-link
+          to="/"
+          class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+        >
+          <DisclosureButton>Dashboard</DisclosureButton></router-link
+        >
+        <router-link
+          to="/editpage/1"
+          class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+        >
+          <DisclosureButton>Edit</DisclosureButton></router-link
+        >
+        <router-link
+          to="/create"
+          class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+        >
+          <DisclosureButton>Create</DisclosureButton></router-link
+        >
       </div>
     </DisclosurePanel>
   </Disclosure>
