@@ -5,21 +5,19 @@ import { useRoute } from "vue-router";
 import { onMounted } from "vue";
 const store = useUserStore();
 const route = useRoute();
-const getId:string |string[] = route.params.id;
+const getId: string | string[] = route.params.id;
 
 onMounted(() => {
   // const res = axios(`https://dummyjson.com/users/${getId}`).then((res) => {
   //   items.value = res.data;
   // });
   // console.log(items.value);
-  store.getOneUser(getId)
+  store.getOneUser(getId);
 });
-
-
+console.log(store.currentItem);
 </script>
 
 <template>
-  
   <div class="flex justify-center items-center mt-12">
     <div class="w-full max-w-xs">
       <form
@@ -27,7 +25,7 @@ onMounted(() => {
         @submit.prevent="store.updateSubmit(getId)"
       >
         <img
-          :src="store.itemList.image"
+          :src="store.currentItem.image"
           alt=""
           class="mb-3 w-24 h-24 mt-5 rounded-full shadow-lg mx-auto border-none"
         />
@@ -40,9 +38,7 @@ onMounted(() => {
             id="url"
             type="text"
             placeholder="url"
-            v-model="store.itemList.image"
-           
-            
+            v-model="store.currentItem.image"
           />
         </div>
         <div class="mb-4">
@@ -53,12 +49,11 @@ onMounted(() => {
             First Name
           </label>
           <input
-          v-model="store.itemList.firstName"
+            v-model="store.currentItem.firstName"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="username"
             type="text"
             placeholder="firstname"
-            
           />
         </div>
         <div class="mb-4">
@@ -69,12 +64,11 @@ onMounted(() => {
             Last Name
           </label>
           <input
-          v-model="store.itemList.lastName"
+            v-model="store.currentItem.lastName"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="username"
             type="text"
             placeholder="lastname"
-            
           />
         </div>
         <div class="mb-4">
@@ -82,12 +76,11 @@ onMounted(() => {
             Email
           </label>
           <input
-          v-model="store.itemList.email"
+            v-model="store.currentItem.email"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="email"
             type="email"
             placeholder="email"
-            
           />
         </div>
 
