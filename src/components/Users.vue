@@ -1,12 +1,23 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useUserStore } from "@/stores/userStore";
-
+import Modal from "@/utils/Modal.vue";
 const store = useUserStore();
+
 onMounted(() => {
   store.getUsers();
   console.log(store.itemList);
 });
+const itemToDelete = ref("");
+const modalVisible = ref<boolean>(false);
+const confirmDeleteItem = (payload: any) => {
+  modalVisible.value = true;
+  itemToDelete.value = payload;
+};
+const deleteItem = (payload: any) => {
+  store.getDelete(payload);
+  modalVisible.value = false;
+};
 </script>
 
 <template>
@@ -31,7 +42,7 @@ onMounted(() => {
         <div class="flex mt-4 space-x-3 lg:mt-6">
           <button
             class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none"
-            @click="store.getDelete(item.id)"
+            @click="confirmDeleteItem(item.id)"
           >
             Delete
           </button>
@@ -46,4 +57,9 @@ onMounted(() => {
       </div>
     </div>
   </div>
+  <Modal
+    :isVisible="modalVisible"
+    @cancel="modalVisible = false"
+    @confirm="deleteItem(itemToDelete)"
+  />
 </template>
