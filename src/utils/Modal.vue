@@ -37,7 +37,6 @@ import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } fro
 import { ExclamationIcon } from '@heroicons/vue/outline'
 const props=defineProps(["isVisible"])
 const emit=defineEmits(["cancel","confirm"])
-console.log(props.isVisible);
 const emitCancel=()=>{
   emit("cancel")
 }

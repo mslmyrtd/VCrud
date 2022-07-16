@@ -3,6 +3,7 @@ import { useUserStore } from "@/stores/userStore";
 import axios from "axios";
 import { useRoute } from "vue-router";
 import { onMounted } from "vue";
+import Loading from "../components/Loading.vue";
 const store = useUserStore();
 const route = useRoute();
 const getId: string | string[] = route.params.id;
@@ -14,18 +15,17 @@ onMounted(() => {
   // console.log(items.value);
   store.getOneUser(getId);
 });
-console.log(store.currentItem);
 </script>
 
 <template>
-  <div class="flex justify-center items-center mt-12">
+  <div class="flex justify-center items-center mt-12" >
     <div class="w-full max-w-xs">
       <form
         class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
         @submit.prevent="store.updateSubmit(getId)"
       >
         <img
-          :src="store.currentItem.image"
+          :src="store.currentItem?.image"
           alt=""
           class="mb-3 w-24 h-24 mt-5 rounded-full shadow-lg mx-auto border-none"
         />
@@ -102,4 +102,5 @@ console.log(store.currentItem);
       </form>
     </div>
   </div>
+   
 </template>
