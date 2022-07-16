@@ -35,7 +35,7 @@
 <script lang="ts" setup>
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { ExclamationIcon } from '@heroicons/vue/outline'
-const props=defineProps(["isVisible","id"])
+const props=defineProps(["isVisible"])
 const emit=defineEmits(["cancel","confirm"])
 console.log(props.isVisible);
 const emitCancel=()=>{
@@ -44,5 +44,4 @@ const emitCancel=()=>{
 const emitConfirm=()=>{
   emit("confirm")
 }
-console.log(props.id);
 </script>

@@ -1,14 +1,28 @@
+<script setup lang="ts">
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+} from "@headlessui/vue";
+import { BellIcon, MenuIcon, XIcon } from "@heroicons/vue/solid";
+</script>
+
 <template>
   <Disclosure as="nav" class="bg-gray-800" v-slot="{ open }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">
           <div class="flex-shrink-0">
-            <img
-              class="block lg:hidden h-8 w-auto"
-              src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-              alt="Workflow"
-            />
+            <router-link to="/" active-class="active"
+              ><img
+                class="block lg:hidden h-8 w-auto"
+                src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                alt="Workflow"
+            /></router-link>
             <img
               class="hidden lg:block h-8 w-auto"
               src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
@@ -17,22 +31,14 @@
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
-              <router-link to="/">
+              <router-link to="/" active-class="active">
                 <button
-                  class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                  class="text-white px-3 py-2 text-sm font-medium hover:bg-gray-700 rounded-md"
                 >
                   Dashboard
                 </button></router-link
               >
-              <router-link to="/editpage/1">
-                <button
-                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium "
-                  disabled
-                >
-                  Edit
-                </button></router-link
-              >
-              <router-link to="/create">
+              <router-link to="/create" active-class="active">
                 <button
                   class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
@@ -42,7 +48,6 @@
             </div>
           </div>
         </div>
-
         <div class="-mr-2 flex sm:hidden">
           <!-- Mobile menu button -->
           <DisclosureButton
@@ -61,19 +66,15 @@
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
         <router-link
           to="/"
-          class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+          class="text-white block px-3 py-2 rounded-md text-base font-medium"
+          active-class="active"
         >
           <DisclosureButton>Dashboard</DisclosureButton></router-link
         >
         <router-link
-          to="/editpage/1"
-          class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-        >
-          <DisclosureButton>Edit</DisclosureButton></router-link
-        >
-        <router-link
           to="/create"
-          class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+          class="text-white block px-3 py-2 rounded-md text-base font-medium"
+          active-class="active"
         >
           <DisclosureButton>Create</DisclosureButton></router-link
         >
@@ -81,16 +82,8 @@
     </DisclosurePanel>
   </Disclosure>
 </template>
-
-<script setup lang="ts">
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-} from "@headlessui/vue";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/vue/solid";
-</script>
+<style>
+.active {
+  @apply bg-gray-900 rounded;
+}
+</style>

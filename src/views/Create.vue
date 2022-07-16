@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import router from "@/router";
-import axios from "axios";
-import { ref, watch } from "vue";
 import { useUserStore } from "@/stores/userStore";
+import { vAutofocus } from '@/shared/directives/autofocus';
+
 const store = useUserStore();
 </script>
 
@@ -26,6 +25,7 @@ const store = useUserStore();
             id="url"
             type="text"
             placeholder="url"
+            v-autofocus
           />
         </div>
         <div class="mb-4">
@@ -41,6 +41,7 @@ const store = useUserStore();
             id="username"
             type="text"
             placeholder="firstname"
+            
           />
         </div>
         <div class="mb-4">
@@ -91,3 +92,9 @@ const store = useUserStore();
     
   </div>
 </template>
+<style scoped>
+input{
+  @apply  focus:border-indigo-500 border-gray-300 rounded-md
+}
+
+</style>
