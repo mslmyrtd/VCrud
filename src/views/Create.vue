@@ -1,20 +1,22 @@
 <script setup lang="ts">
 import { useUserStore } from "@/stores/userStore";
-import { vAutofocus } from '@/shared/directives/autofocus';
+import { vAutofocus } from "@/shared/directives/autofocus";
 
 const store = useUserStore();
 </script>
 
 <template>
   <div class="flex justify-center items-center mt-12">
-   
-    <div class="w-full max-w-xs ">
-    
+    <div class="w-full max-w-xs">
       <form
         class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
         @submit.prevent="store.getAdd()"
       >
-         <img :src="store.image" alt="" class="mb-3 w-24 h-24 mt-5 rounded-full shadow-lg mx-auto border-none" />
+        <img
+          :src="store.image"
+          alt=""
+          class="mb-3 w-24 h-24 mt-5 rounded-full shadow-lg mx-auto border-none"
+        />
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="url">
             Imaga Url
@@ -41,7 +43,6 @@ const store = useUserStore();
             id="username"
             type="text"
             placeholder="firstname"
-            
           />
         </div>
         <div class="mb-4">
@@ -89,12 +90,10 @@ const store = useUserStore();
         </div>
       </form>
     </div>
-    
   </div>
 </template>
 <style scoped>
-input{
-  @apply  focus:border-indigo-500 border-gray-300 rounded-md
+input {
+  @apply focus:border-indigo-500 border-gray-300 rounded-md;
 }
-
 </style>

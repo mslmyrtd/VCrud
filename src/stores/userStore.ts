@@ -6,16 +6,16 @@ import { toRaw } from "vue";
 
 const toast = useToast();
 
-interface currentItem {
+interface currentItem{
   firstName: string;
   lastName: string;
   email: string;
   image: string;
   id: number;
-}
+} 
 type User = {
   itemList: currentItem[] | null;
-  currentItem?: currentItem;
+  currentItem: currentItem;
   firstName: string;
   lastName: string;
   email: string;
@@ -43,7 +43,7 @@ export const useUserStore = defineStore({
   }),
   getters: {},
   actions: {
-    getUsers() {
+    async getUsers():Promise<any> {
       try {
         this.loading=true
         if (this?.itemList && this?.itemList?.length > 0)
@@ -120,7 +120,7 @@ export const useUserStore = defineStore({
         console.log(error);
       }
     },
-    async getOneUser(payload: number): Promise<any> {
+    async getOneUser(payload: string): Promise<any> {
       try {
         if (this.itemList && this.itemList.length > 0) {
           const elem = toRaw(this.itemList).find(
