@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { useUserStore } from "@/stores/userStore";
-import axios from "axios";
 import { useRoute } from "vue-router";
 import { onMounted } from "vue";
-import Loading from "../components/Loading.vue";
 const store = useUserStore();
 const route = useRoute();
-const getId: string | string[] = route.params.id;
+const getId = route.params.id as string;
 
 onMounted(() => {
   // const res = axios(`https://dummyjson.com/users/${getId}`).then((res) => {
@@ -23,7 +21,7 @@ onMounted(() => {
     <div class="w-full max-w-xs">
       <form
         class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
-        @submit.prevent="store.updateSubmit(getId)"
+        @submit.prevent="store.updateSubmit(Number(getId))"
       >
         <img
           :src="store.currentItem.image"
