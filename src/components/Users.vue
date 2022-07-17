@@ -8,13 +8,13 @@ const store = useUserStore();
 onMounted(() => {
   store.getUsers();
 });
-const itemToDelete = ref("");
+const itemToDelete = ref(0);
 const modalVisible = ref<boolean>(false);
 const confirmDeleteItem = (payload: any) => {
   modalVisible.value = true;
   itemToDelete.value = payload;
 };
-const deleteItem = (payload: any) => {
+const deleteItem = (payload: number) => {
   store.getDelete(payload);
   modalVisible.value = false;
 };

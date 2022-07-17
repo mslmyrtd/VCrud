@@ -7,15 +7,10 @@ const route = useRoute();
 const getId = route.params.id as string;
 
 onMounted(() => {
-  // const res = axios(`https://dummyjson.com/users/${getId}`).then((res) => {
-  //   items.value = res.data;
-  // });
-  // console.log(items.value);
-  const getUser=async()=> store.getOneUser(getId);
- getUser()
+  const getUser = async () => await store.getOneUser(getId);
+  getUser();
 });
 </script>
-
 <template>
   <div class="flex justify-center items-center mt-12">
     <div class="w-full max-w-xs">

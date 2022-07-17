@@ -6,13 +6,13 @@ import { toRaw } from "vue";
 
 const toast = useToast();
 
-interface currentItem{
+interface currentItem {
   firstName: string;
   lastName: string;
   email: string;
   image: string;
   id: number;
-} 
+}
 type User = {
   itemList: currentItem[] | null;
   currentItem: currentItem;
@@ -43,19 +43,18 @@ export const useUserStore = defineStore({
   }),
   getters: {},
   actions: {
-    async getUsers():Promise<any> {
+    async getUsers(): Promise<any> {
       try {
-        this.loading=true
-        if (this?.itemList && this?.itemList?.length > 0)
-        {
-          this.loading=false
-          this.itemList;} 
-        else {
-          axios(
+        this.loading = true;
+        if (this?.itemList && this?.itemList?.length > 0) {
+          this.loading = false;
+          this.itemList;
+        } else {
+          await axios(
             "https://dummyjson.com/users?limit=20&skip=0&select=firstName,lastName,email,image"
           ).then((response) => {
             this.itemList = response.data.users || [];
-            this.loading=false
+            this.loading = false;
           });
         }
       } catch (error) {
