@@ -63,7 +63,7 @@ $npm run start
 
 <details><summary><b>Deployment </b></summary><br>
 
-Deployed at Heroku @ <br>
+Deployed at Netlify https://vcrud.netlify.app/<br>
 Graphql queries can be done at @
 
 Check collection with Postman : <br>
