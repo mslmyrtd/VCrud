@@ -14,6 +14,7 @@
 - #### Axios library
 - #### Pinia
 - #### Typescript
+- #### Vue-Toastification
 - #### Tailwind Css
 - #### Vitejs
 
