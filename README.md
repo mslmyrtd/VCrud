@@ -25,9 +25,9 @@
 
 ```
 
-$ git clone https://github.com/mslmyrtd/SmartPulse.git
+$ git clone https://github.com/mslmyrtd/VCrud.git
 
-$ cd SmartPulse
+$ cd VCrud
 
 ```
 
