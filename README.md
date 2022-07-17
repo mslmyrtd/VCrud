@@ -16,6 +16,7 @@
 - #### Typescript
 - #### Vue-Toastification
 - #### Tailwind Css
+- #### Headless Ui
 - #### Vitejs
 
 
