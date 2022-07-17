@@ -18,6 +18,7 @@
 - #### Tailwind Css
 - #### Headless Ui
 - #### Vitejs
+- #### DummyJSON api
 
 
 <details><summary><b>Installation Instructions</b></summary><br>
