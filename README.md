@@ -10,10 +10,11 @@
 
 ## Used Stack :
 
-- #### React.js
+- #### Vue3.js
 - #### Axios library
-- #### Moment
-- #### Bootsrap
+- #### Pinia
+- #### Typescript
+- #### Tailwind Css
 
 
 <details><summary><b>Installation Instructions</b></summary><br>
