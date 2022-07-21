@@ -6,9 +6,9 @@ const store = useUserStore();
 const route = useRoute();
 const getId = route.params.id as string;
 
-onMounted(() => {
-  const getUser = async () => await store.getOneUser(getId);
-  getUser();
+onMounted(async () => {
+   await store.getOneUser(getId);
+  
 });
 </script>
 <template>
