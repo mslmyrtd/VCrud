@@ -9,6 +9,6 @@ import Users from "@/components/Users.vue";
 </template>
 <style>
 body {
-  @apply bg-slate-200;
+  @apply bg-slate-200 dark:bg-slate-300;
 }
 </style>

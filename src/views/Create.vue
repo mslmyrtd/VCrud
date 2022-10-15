@@ -9,7 +9,7 @@ const store = useUserStore();
   <div class="flex justify-center items-center mt-12">
     <div class="w-full max-w-xs">
       <form
-        class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
+        class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 dark:bg-slate-200"
         @submit.prevent="store.getAdd()"
       >
         <img

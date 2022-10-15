@@ -23,7 +23,7 @@ const deleteItem = (payload: number) => {
 <template>
   <div class="grid lg:grid-cols-4 gap-4 m-10 md:grid-cols-2 sm:grid-cols-1">
     <div
-      class="max-w-sm bg-slate-50 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+      class="max-w-sm bg-slate-50 rounded-lg border border-gray-200 shadow-md dark:bg-gray-400 dark:border-gray-200"
       v-for="item in store.itemList"
       :key="item.id"
       v-if="!store.loading"
