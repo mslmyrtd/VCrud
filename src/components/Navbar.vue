@@ -1,10 +1,19 @@
 <script setup lang="ts">
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-import { MenuIcon, XIcon } from "@heroicons/vue/solid";
+import { MenuIcon, XIcon, SunIcon, MoonIcon } from "@heroicons/vue/solid";
+import { useDark, useToggle } from "@vueuse/core";
+
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
+
 </script>
 
 <template>
-  <Disclosure as="nav" class="bg-gray-800 sticky top-0 z-10" v-slot="{ open }">
+  <Disclosure
+    as="nav"
+    class="bg-gray-500 sticky top-0 z-10 dark:bg-gray-800"
+    v-slot="{ open }"
+  >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">
@@ -41,6 +50,21 @@ import { MenuIcon, XIcon } from "@heroicons/vue/solid";
             </div>
           </div>
         </div>
+        <div class="flex-1 px-4 flex justify-end items-center">
+          <button @click="toggleDark()">
+            <span class="flex" v-if="!isDark">
+              <SunIcon class="bg-white block h-6 w-6" v-if="!isDark"></SunIcon
+              ><span class="text-black ml-2">Light Mode</span>
+            </span>
+            <span class="flex" v-else>
+              <MoonIcon
+                class="bg-white block h-6 w-6"
+              ></MoonIcon
+              ><span class="text-slate-200 ml-2">Dark Mode</span>
+            </span>
+          </button>
+        </div>
+
         <div class="-mr-2 flex sm:hidden">
           <!-- Mobile menu button -->
           <DisclosureButton
